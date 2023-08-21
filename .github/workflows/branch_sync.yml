@@ -1,8 +1,9 @@
-name: branch sync
+name: 'branch sync'
 on:
+  workflow_dispatch:
   push:
     branches:
-    - ng
+      - ng
 jobs:
   prepare:
     if: vars.ENABLE_BRANCH_SYNC == 'true'
