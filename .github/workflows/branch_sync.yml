@@ -19,7 +19,6 @@ jobs:
         set -x
         dirs=( "mcpelauncher-ng" )
         common_submodules=( "axml-parser" "file-util" "google-play-api" "mcpelauncher-apkinfo" "mcpelauncher-extract" )
-        # from https://github.com/orgs/community/discussions/26560
         git -C mcpelauncher-ng/playdl-signin-ui-qt fetch origin HEAD
         git -C mcpelauncher-ng/playdl-signin-ui-qt reset --hard FETCH_HEAD
         git -C mcpelauncher-ng/mcpelauncher-ui-qt fetch origin ng
@@ -27,9 +26,10 @@ jobs:
         for dir in "${dirs[@]}"
         do
           pushd "$dir"
-          for submodule in "${common_submodules[@]}"
+          # from https://github.com/orgs/community/discussions/26560
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config user.name "github-actions[bot]"
+          for submodule in "${common_submodules[@]}"
           do
             git -C "$submodule" fetch origin HEAD
             git -C "$submodule" reset --hard FETCH_HEAD
